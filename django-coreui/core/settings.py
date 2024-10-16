@@ -57,7 +57,9 @@ INSTALLED_APPS = [
     "producto",
     "cliente",
     "proveedor",
+    "tipo_pago",
     "home",
+    
 ]
 
 MIDDLEWARE = [

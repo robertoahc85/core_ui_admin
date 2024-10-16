@@ -7,7 +7,7 @@ from .models import Producto
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'precio', 'stock','categoria')
-    search_fields = ('nombre','categoria_nombre')
+    search_fields = ('nombre','categoria__nombre')
     list_filter =('categoria',)
     ordering = ('nombre', )
     
@@ -15,3 +15,5 @@ class ProductoAdmin(admin.ModelAdmin):
         if obj is not None:
             return ['nombre']
         return super().get_readonly_fields(request, obj)
+    
+    
