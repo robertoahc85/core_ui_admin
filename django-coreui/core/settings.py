@@ -58,8 +58,10 @@ INSTALLED_APPS = [
     "cliente",
     "proveedor",
     "tipo_pago",
-    "home",
-    
+    "caja",
+    "almacen",
+    "inventarios",
+    "home", 
 ]
 
 MIDDLEWARE = [
@@ -118,12 +120,23 @@ if DB_ENGINE and DB_NAME and DB_USERNAME:
         }, 
     }
 else:
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': 'db.sqlite3',
+    #     }
+    # }
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'punto_venta1',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '5434',  # El puerto por defecto de PostgreSQL
     }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
