@@ -18,5 +18,13 @@ class TipoMovimiento(models.Model):
 class MovimientoInventario(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     fecha_movimiento =models.DateTimeField(auto_now_add=True)
+    tipo_movimiento = models.ForeignKey(TipoMovimiento, on_delete=models.CASCADE)
+    cantidad = models.IntegerField()
+    almacen_origen = models.ForeignKey(Almacen, related_name='movimiento_salida', null=True, blank=True,on_delete=models.SET_NULL)
+    almacen_destino = models.ForeignKey(Almacen,null=True,related_name='movimiento_entrada', blank=True,on_delete=models.SET_NULL)
+    
+    def __str__(self):
+        return f"{self.tipo_movimiento}-{self.producto.nombre}-{self.cantidad}"
+    
     
 
