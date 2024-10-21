@@ -8,7 +8,7 @@ class ProductoInline(admin.TabularInline):
    extra = 1
 
 class CategoriaAdmin(admin.ModelAdmin):
-   list_display=('nombre',)
+   list_display=('id','nombre',)
    search_fields = ('nombre',)
    list_filter = ('nombre',)
    ordering= ('nombre',) 
