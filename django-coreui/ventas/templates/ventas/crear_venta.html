@@ -14,27 +14,28 @@
   </header>
   <div class="body flex-grow-1">
     <div class="container-lg px-4">{% include 'includes/topbar.html' %}
-
-
         <h2> Realizar venta</h2>
-        <form method='post'>
+        <form method="post">
             {% csrf_token %}
+            {{venta_form.as_p}}
             <h3> Productos</h3>
             <table>
                 <tr>
                     <th>Producto</th>
+                    <th>Precio</th>
                     <th>Cantidad</th>
                 </tr>
                 {%for producto in productos%}
                 <tr>
                     <td>{{ producto.nombre}}</td>
+                    <td>${{producto.precio}}</td>
                     <td><input type="number" name="cantidad" value=1></td>
                     <input type="hidden" name="producto_id" value="{{ producto.id }}">
                 </tr>
                 {% endfor %}
             </table>
-
-        </form>
+            <button type="submit">Guardar Venta</button>
+      </form>
 
 
 

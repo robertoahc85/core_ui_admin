@@ -4,7 +4,7 @@ from .models import Ventas, VentaItem
 class VentaForm(forms.ModelForm):
     class Meta:
         model = Ventas  # Cambia 'models' a 'model'
-        fields = ['vendedor', 'cliente', 'tipo_pago','total']
+        fields = ['vendedor', 'cliente', 'tipo_pago']
 
 class VentaItemForm(forms.ModelForm):
     class Meta:
