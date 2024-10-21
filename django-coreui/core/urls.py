@@ -20,4 +20,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path("admin/", admin.site.urls),
     path('', include('admin_coreui.urls')),
+    path('ventas/', include('ventas.urls')),
 ]

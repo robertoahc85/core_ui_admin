@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     "caja",
     "almacen",
     "inventarios",
+    "vendedores",
+    "ventas",
     "home", 
 ]
 
