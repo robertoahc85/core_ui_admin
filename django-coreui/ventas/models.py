@@ -19,7 +19,8 @@ class Ventas(models.Model):
     def calcular_total(self):  #Calcula el total sumando los subtotales de todos los ítems de la venta.
         total = sum(item.subtotal() for item in self.items.all())
         return total
-
+    
+    
     def save(self, *args, **kwargs):
     # Guarda la venta, primero sin calcular el total.
         #Luego guarda los ítems y recalcula el total.
@@ -52,4 +53,22 @@ class VentaItem(models.Model):
         super().save(*args, **kwargs)
         # Después de guardar el ítem, recalculamos el total de la venta
         self.venta.save()
+        self.actualizar_stock()
+        
     
+    def actualizar_stock(self):
+        cantidad_actual = int(self.cantidad)
+        stock_actual = int(self.producto.stock)
+        if stock_actual >= cantidad_actual:
+            self.producto.stock-= cantidad_actual
+            self.producto.save()
+        else:
+            logger.error(f"El stock es menor a lo solicitado")  
+        #Agregar movimientos_inventario      
+        tipo_movimiento = TipoMovimiento.objects.get(nombre='salidas')
+        movimiento = MovimientoInventario(
+            producto = self.producto,
+            tipo_movimiento =tipo_movimiento,
+            cantidad = cantidad_actual,
+        )  
+        movimiento.save()     

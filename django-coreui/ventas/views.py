@@ -10,10 +10,10 @@ def crear_venta(request):
         if venta_form.is_valid():
             venta = venta_form.save()
             
-            producto_ids = request.POST.getlist('producto_id') #todo
-            cantidades = request.POST.getlist('cantidad') #todo
+            producto_ids = request.POST.getlist('producto_id') 
+            cantidades = request.POST.getlist('cantidad') 
             
-            for producto_id, cantidad in zip(producto_ids, cantidades): #todo
+            for producto_id, cantidad in zip(producto_ids, cantidades): 
                 producto= Producto.objects.get(id=producto_id)
                 VentaItem.objects.create(
                     venta=venta,
